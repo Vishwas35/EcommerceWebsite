@@ -23,8 +23,8 @@
 - `name`: String
 - `description`: String
 - `price`: Number
+- `category`: String
 - `brand`: String
-- `color`: String
 - `stock`: Number
 - `image`: String
 
