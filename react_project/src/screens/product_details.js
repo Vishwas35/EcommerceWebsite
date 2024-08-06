@@ -19,6 +19,7 @@ function ProductDetails() {
         getProduct();
     }, [id]);
 
+
     return (
         <>
             <div key={product._id} className="product-detail-card">
@@ -28,7 +29,7 @@ function ProductDetails() {
                 <p className="normal-text">${product.price}</p>
                 <button className="button-style" onClick={
                     async () => {
-                        const response = await fetch('http://localhost:8000/api/cart', {
+                        const response = await fetch('http://localhost:8000/cart', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -37,10 +38,10 @@ function ProductDetails() {
                         });
 
                         if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-
-                        response.json();
+                            alert('Something went wrong!!')
+                            return;
+                         }
+                         alert('Item Added to cart successfully.')
                     }}>
                     Add to Cart
                 </button>

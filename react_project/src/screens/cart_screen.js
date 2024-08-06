@@ -9,23 +9,29 @@ const Cart = ({ userId }) => {
         const getCartItems = async () => {
             const response = await fetch('http://localhost:8000/cart/66ac0dad27956050442088eb');
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                alert('Something went wrong!!');
+                return;
             }
             const cartItems = await response.json();
             setCart(cartItems);
         };
-        
+
         getCartItems();
     }, [userId]);
 
-    const handleRemove = (id) => {
-        fetch(`http://localhost:8000/cart/${id}`)
-            .then(() => {
-                setCart(cart.filter(item => item._id !== id));
-            })
-            .catch(error => {
-                console.error("There was an error removing the item from the cart!", error);
-            });
+    const handleRemove = async (id) => {
+        const response = await fetch(`http://localhost:8000/cart/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            alert('Something went wrong!!');
+            return;
+        }
+        alert('Item Remove Successfully from cart!');
+        setCart(cart.filter(item => item._id !== id));
     };
 
     return (
@@ -37,7 +43,7 @@ const Cart = ({ userId }) => {
                         {cart.map(item => (
                             <li key={item._id} className="cart-item">
                                 <h3 className="title-text">{item.productId.name}</h3>
-                                <p className="normal-text">Quantity: 
+                                <p className="normal-text">{'Quantity :   '}
                                     <input
                                         type="number"
                                         id="quantity"
@@ -51,6 +57,8 @@ const Cart = ({ userId }) => {
                             </li>
                         ))}
                     </ul>
+                    <br />
+                    <br />
                     <button className="button-style">Checkout</button>
                 </>
             }

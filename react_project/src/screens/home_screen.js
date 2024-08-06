@@ -10,7 +10,7 @@ function ProductList() {
         const getProducts = async () => {
             const response = await fetch('http://localhost:8000/product');
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                alert("Something went wrong!");
             }
             const products = await response.json();
             setProducts(products);
@@ -29,10 +29,10 @@ function ProductList() {
                         <h3 className="title-text">{product.name}</h3>
                         <p className="normal-text">{product.description}</p>
                         <p className="normal-text">${product.price}</p>
-                        <Link to={`/product/${product._id}`} className="">Detail</Link>
+                        <Link to={`/product/${product._id}`}><button className="second-button-style">Detail</button></Link>
                         <button className="button-style" onClick={
                             async () => {
-                                const response = await fetch('http://localhost:8000/api/cart', {
+                                const response = await fetch('http://localhost:8000/cart', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -41,10 +41,10 @@ function ProductList() {
                                 });
 
                                 if (!response.ok) {
-                                    throw new Error(`HTTP error! status: ${response.status}`);
+                                   alert('Something went wrong!!')
+                                   return;
                                 }
-
-                                response.json();
+                                alert('Item Added to cart successfully.')
                             }}>
                                 Add to Cart
                             </button>
