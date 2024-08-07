@@ -10,6 +10,7 @@ import AddUpdateCategory from './screens/category_add_update_screen';
 import Categories from './screens/categories_screen';
 import Login from './screens/admin_login';
 import React from 'react';
+import Checkout from './screens/checkout';
 
 function App() {
   const role = localStorage.getItem('role');
@@ -27,6 +28,8 @@ function App() {
         <Route path="/products" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+
         {role === 'admin' && (
           <React.Fragment>
             <Route path="/add-products" element={<AddUpdateProduct />} />
@@ -34,7 +37,7 @@ function App() {
             <Route path="/update-products/:id" element={<AddUpdateProduct />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/add-category" element={<AddUpdateCategory />} />
-            
+          
             <Route path="/update-category/:id" element={<AddUpdateCategory />} />
           </React.Fragment>
         )}

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = ({ userId }) => {
     const [cart, setCart] = useState([]);
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getCartItems = async () => {
@@ -59,7 +61,7 @@ const Cart = ({ userId }) => {
                     </ul>
                     <br />
                     <br />
-                    <button className="button-style">Checkout</button>
+                    <button className="button-style" onClick={() => { navigate("/checkout"); }}>Checkout</button>
                 </>
             }
         </div>
