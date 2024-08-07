@@ -58,13 +58,8 @@
 - `password`: String
 - `isAdmin`: Boolean
 
-### Frontend Setup
-- 
-
-### Backend Setup
-- 
-
 ### Notes
 
 - The project is set up using GitHub for version control.
 - Added Databse Schema's Visual Representation in this.
+- Username and Password for Admin is `admin` and `admin@123`
